@@ -1,3 +1,8 @@
+import "./book.css";
+import "./main.css";
+
+import { createPopper } from '@popperjs/core';
+
 class RangeRef {
     constructor() {
         this.updateRect();
@@ -36,37 +41,35 @@ class RangeRef {
     getBoundingClientRect() {
         return this.rect;
     }
-
-    get clientWidth() {
-        return this.rect.width;
-    }
-
-    get clientHeight() {
-        return this.rect.height;
-    }}
+}
 
 
 let selectedText = null;
-const pop = document.getElementById("pop");
+const tooltip = document.getElementById("tooltip");
 const rangeRef = new RangeRef();
-const popper = new Popper(rangeRef, pop, {
-    placement: "top",
-    modifiers: { offset: { offset: "0,5" } } });
+const popper = createPopper(rangeRef, tooltip, {
+  placement: "bottom",
+  modifiers: [{ offset: { offset: "0,5" } }]
+});
 
+function hide() {
+  tooltip.removeAttribute('data-show');
+}
 
 rangeRef.rectChangedCallback = ({ width }) => {
-    selectedText = getSelection().toString();
-    if (width > 0 && selectedText) {
-        popper.scheduleUpdate();
-        pop.firstElementChild.classList.add('popper--visible');
-    } else {
-        pop.firstElementChild.classList.remove('popper--visible');
-    }
+  selectedText = getSelection().toString();
+  if (width > 0 && selectedText) {
+    tooltip.setAttribute('data-show', '');
+    popper.update();
+  } else {
+    hide();
+  }
 };
 
-function share() {
-    if (!selectedText) {return;}
-    window.webxdc.sendUpdate({payload: "", info: selectedText}, selectedText);
-    document.getElementById("pop").firstElementChild.classList.remove('popper--visible');
-    getSelection().removeAllRanges();
-}
+const share = document.getElementById("shareBtn");
+share.addEventListener("click", () => {
+  if (!selectedText) {return;}
+  window.webxdc.sendUpdate({payload: "", info: selectedText}, selectedText);
+  hide();
+  getSelection().removeAllRanges();
+});

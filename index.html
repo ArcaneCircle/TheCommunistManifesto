@@ -2,16 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="./styles/main.css" />
-  <link rel="stylesheet" type="text/css" href="./styles/tooltip.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <script src="webxdc.js"></script>
 </head>
 <body>
-  <div id="pop" role="tooltip">
-    <div class="popper">
-      <i onclick="share()">share in chat</i>
-      <div x-arrow></div>
-    </div>
+  <div id="tooltip" role="tooltip">
+    <i id="shareBtn">share in chat</i>
+    <div id="arrow" data-popper-arrow></div>
   </div>
 <div id="content">
   <section class="pg-boilerplate pgheader" id="pg-header" lang="en"><h2 id="pg-header-heading" title="">The Project Gutenberg eBook of <span lang="en" id="pg-title-no-subtitle">The Communist Manifesto</span></h2>
@@ -1904,7 +1901,6 @@ subscribe to our email newsletter to hear about new eBooks.
 
 </section>
 </div>
-<script src="./js/popper.min.js"></script>
-<script src="./js/tooltip.js"></script>
+<script src="./src/main.js" type="module"></script>
 </body>
 </html>
