@@ -70,14 +70,23 @@ share.addEventListener("click", () => {
   if (!selectedText) {
     return;
   }
-  window.webxdc.sendUpdate({ payload: "", info: selectedText }, selectedText);
+  const hash = encodeURIComponent(selectedText);
+  window.webxdc.sendUpdate(
+    { payload: "", info: selectedText, href: `index.html#${hash}` },
+    "",
+  );
   hide();
   getSelection().removeAllRanges();
 });
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  const scrollpos = localStorage.getItem("scrollpos");
-  if (scrollpos) window.scrollTo(0, scrollpos);
+window.addEventListener("load", () => {
+  const quote = decodeURIComponent(window.location.hash.substring(1));
+  if (quote && window.find) {
+    window.find(quote);
+  } else {
+    const scrollpos = localStorage.getItem("scrollpos");
+    if (scrollpos) window.scrollTo(0, scrollpos);
+  }
 });
 
 document.addEventListener("visibilitychange", () => {
