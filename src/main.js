@@ -73,3 +73,12 @@ share.addEventListener("click", () => {
   hide();
   getSelection().removeAllRanges();
 });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  const scrollpos = localStorage.getItem('scrollpos');
+  if (scrollpos) window.scrollTo(0, scrollpos);
+});
+
+window.onbeforeunload = (e) => {
+  localStorage.setItem('scrollpos', window.scrollY);
+};
