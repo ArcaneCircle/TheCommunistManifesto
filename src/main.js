@@ -80,6 +80,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   if (scrollpos) window.scrollTo(0, scrollpos);
 });
 
-window.onbeforeunload = (e) => {
+document.addEventListener("visibilitychange", () => {
   localStorage.setItem("scrollpos", window.scrollY);
-};
+});
