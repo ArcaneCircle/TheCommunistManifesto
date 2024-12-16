@@ -70,10 +70,14 @@ share.addEventListener("click", () => {
   if (!selectedText) {
     return;
   }
-  if (selectedText.length > 500) {
-    selectedText =  selectedText.substring(0, 500) + "…";
+  let hash
+  if (selectedText.length > 1000) {
+    selectedText = selectedText.substring(0, 1000);
+    hash = encodeURIComponent(selectedText);
+    selectedText += "…";
+  } else {
+    hash = encodeURIComponent(selectedText);
   }
-  const hash = encodeURIComponent(selectedText);
   window.webxdc.sendUpdate(
     { payload: "", info: selectedText, href: `index.html#${hash}` },
     "",
