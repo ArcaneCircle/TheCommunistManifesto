@@ -71,7 +71,7 @@ share.addEventListener("click", () => {
     return;
   }
   if (selectedText.length > 500) {
-    selectedText =  selectedText.substring(0, 500);
+    selectedText =  selectedText.substring(0, 500) + "…";
   }
   const hash = encodeURIComponent(selectedText);
   window.webxdc.sendUpdate(
