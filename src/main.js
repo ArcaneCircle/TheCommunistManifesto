@@ -70,7 +70,7 @@ share.addEventListener("click", () => {
   if (!selectedText) {
     return;
   }
-  let hash
+  let hash;
   if (selectedText.length > 1000) {
     selectedText = selectedText.substring(0, 1000);
     hash = encodeURIComponent(selectedText);
