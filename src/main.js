@@ -57,7 +57,7 @@ function hide() {
 
 rangeRef.rectChangedCallback = ({ width }) => {
   selectedText = getSelection().toString();
-  if (width > 0 && selectedText) {
+  if (width > 0 && selectedText && selectedText.length > 10) {
     tooltip.setAttribute("data-show", "");
     popper.update();
   } else {
