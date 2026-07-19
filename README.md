@@ -1,6 +1,6 @@
 # The Communist Manifesto
 
-The Communist Manifesto as Webxdc app, besides sharing it with others in chats,
+The Communist Manifesto in your ArcaneChat! besides sharing it with others in chats,
 it also allows to quote the desired fragments of the text for that times when it
 is needed in a conversation.
 
@@ -44,15 +44,6 @@ NODE_ENV=debug pnpm build
 ```
 
 The resulting optimized `.xdc` file is saved in `dist-xdc/` folder.
-
-### Releasing
-
-To automatically build and create a new GitHub release with the `.xdc` file:
-
-```
-git tag -a v1.0.1
-git push origin v1.0.1
-```
 
 ## Credits
 
